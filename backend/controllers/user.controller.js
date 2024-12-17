@@ -9,6 +9,7 @@ export const register = async (request, response) => {
 
     // checking if the fields are empty
     if (!fullname || !email || !phoneNumber || !password || !role) {
+      // 400 bad request
       return response.status(400).json({
         message: "Input Field Missing",
         success: false,
@@ -122,6 +123,59 @@ export const logout = async (request, response) => {
         success: true,
       })
     );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProfile = async (request, response) => {
+  try {
+    const { fullname, email, phoneNumber, bio, skills } = request.body;
+    const file = request.file;
+
+    //cloudinary
+
+    // skills in string format convert to array
+    if (skills) {
+      const skillsArray = skills.split(",");
+    }
+
+    // middleware authentication
+    const userId = request.id;
+
+    let user = await User.findById(userId);
+    if (!user) {
+      return response.status(400).json({
+        message: "User not found",
+        success: false,
+      });
+    }
+
+    // updating data
+    if (fullname) user.fullname = fullname;
+    if (email) user.email = email;
+    if (phoneNumber) user.phoneNumber = phoneNumber;
+    if (bio) user.profile.bio = bio;
+    if (skills) user.profile.skills = skillsArray;
+
+    //add resume
+
+    await user.save();
+
+    user = {
+      id: user._id,
+      fullname: user.fullname,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      role: user.role,
+      profile: user.profile,
+    };
+
+    return response.status(200).json({
+      message: "Profile updated successfully",
+      user,
+      success: true,
+    });
   } catch (error) {
     console.log(error);
   }
