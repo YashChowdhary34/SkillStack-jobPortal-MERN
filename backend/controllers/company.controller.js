@@ -1,4 +1,3 @@
-import { response } from "express";
 import { Company } from "../models/company.model.js";
 
 export const registerCompany = async (request, response) => {
@@ -10,7 +9,7 @@ export const registerCompany = async (request, response) => {
         success: false,
       });
     }
-    let company = await Company.findCompany({ name: companyName });
+    let company = await Company.findOne({ name: companyName });
     if (company) {
       return response.json({
         message: "Company already exists",
@@ -37,13 +36,17 @@ export const getCompany = async (request, response) => {
   try {
     //userid of user logged in
     const userId = request.id;
-    const companies = await Company.findCompany({ userId });
-    if (!companies) {
+    const company = await Company.findOne({ userId });
+    if (!company) {
       return response.status(404).json({
         message: "Company not found",
         success: false,
       });
     }
+    return response.status(200).json({
+      company,
+      success: true,
+    });
   } catch (error) {
     console.log(error);
   }

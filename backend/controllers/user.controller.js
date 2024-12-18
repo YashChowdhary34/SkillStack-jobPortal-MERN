@@ -1,5 +1,5 @@
-import { User } from "../models/user.model";
-import bycrypt, { hash } from "bcryptjs";
+import { User } from "../models/user.model.js";
+import bycrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = async (request, response) => {
@@ -17,7 +17,7 @@ export const register = async (request, response) => {
     }
 
     // checking if the user already exists
-    const user = await User.findUser({ email });
+    const user = await User.findOne({ email });
     if (user) {
       return response.status(400).json({
         message: "Email already taken",
@@ -59,7 +59,7 @@ export const login = async (request, response) => {
     }
 
     // checking if the user exists
-    let user = await User.findUser({ email });
+    let user = await User.findOne({ email });
     if (!user) {
       return response.status(400).json({
         message: "Incorrect email or password",
@@ -162,7 +162,7 @@ export const updateProfile = async (request, response) => {
 
     await user.save();
 
-    user = {
+    const userData = {
       id: user._id,
       fullname: user.fullname,
       email: user.email,
@@ -173,7 +173,7 @@ export const updateProfile = async (request, response) => {
 
     return response.status(200).json({
       message: "Profile updated successfully",
-      user,
+      userData,
       success: true,
     });
   } catch (error) {

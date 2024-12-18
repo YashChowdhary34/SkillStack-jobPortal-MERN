@@ -1,4 +1,3 @@
-import { response } from "express";
 import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (request, response, next) => {
