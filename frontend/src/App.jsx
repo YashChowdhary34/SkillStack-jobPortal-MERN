@@ -1,4 +1,3 @@
-import Navbar from "./components/ui/shared/navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/ui/auth/Login.jsx";
 import Signup from "./components/ui/auth/Signup.jsx";

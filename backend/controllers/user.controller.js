@@ -103,8 +103,8 @@ export const login = async (request, response) => {
       .status(200)
       .cookie("token", token, {
         maxAge: 1 * 23 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "strict",
+        httpOnly: true, //makes cookie inaccessible via js preventing xss
+        sameSite: "strict", // restricts cookie from being sent via cross-site requests
       })
       .json({ message: `Welcome back ${user.fullname}`, success: true });
   } catch (error) {
@@ -114,15 +114,10 @@ export const login = async (request, response) => {
 
 export const logout = async (request, response) => {
   try {
-    return response.status(200).cookie(
-      "token",
-      _,
-      { maxAge: 0 },
-      json({
-        message: "Logged out successfully",
-        success: true,
-      })
-    );
+    return response.status(200).cookie("token", "", { maxAge: 0 }).json({
+      message: "Logged out successfully",
+      success: true,
+    });
   } catch (error) {
     console.log(error);
   }

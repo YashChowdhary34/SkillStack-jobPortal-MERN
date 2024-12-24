@@ -1,11 +1,11 @@
 import express from "express";
-import isAuthenticated from "../middlewares/isAuthenticated";
+import isAuthenticated from "../middlewares/isAuthenticated.js";
 import {
   getAllJobs,
   getJobByAdmin,
   getJobById,
   postJob,
-} from "../controllers/job.controller";
+} from "../controllers/job.controller.js";
 
 const router = express.Router();
 
