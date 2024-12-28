@@ -1,7 +1,6 @@
-
 # SkillStack - A Personalised Job Portal for Developers
 
-![SkillStack Logo](#) <!-- Replace # with the path or URL to your logo -->
+<!-- Replace # with the path or URL to your logo -->
 
 ## Overview
 
