@@ -1,6 +1,7 @@
-# SkillStack - a personalised job portal for developers
 
-<!-- Insert your project image here -->
+# SkillStack - A Personalised Job Portal for Developers
+
+![SkillStack Logo](#) <!-- Replace # with the path or URL to your logo -->
 
 ## Overview
 
@@ -19,6 +20,9 @@ SkillStack is built using the MERN stack, chosen for its efficiency in developin
 
 - [Introduction](#introduction)
 - [Features](#features)
+  - [Implemented Features](#implemented-features)
+  - [Features in Progress](#features-in-progress)
+  - [Planned Features](#planned-features)
 - [Backend](#backend)
   - [User Authentication](#user-authentication)
   - [Job Management](#job-management)
@@ -29,6 +33,7 @@ SkillStack is built using the MERN stack, chosen for its efficiency in developin
   - [Current Progress](#current-progress)
   - [Future Enhancements](#future-enhancements)
 - [Conclusion](#conclusion)
+- [Repository and Contribution](#repository-and-contribution)
 
 ## Introduction
 
@@ -84,8 +89,10 @@ function authenticateToken(req, res, next) {
     res.status(400).send('Invalid Token');
   }
 }
+```
 
-# Job Management
+### Job Management
+
 Recruiters can manage job postings through the following features:
 
 - **Create Job**: Add new job listings with detailed descriptions and requirements.
@@ -117,9 +124,8 @@ router.post('/create', async (req, res) => {
 module.exports = router;
 ```
 
----
-
 ### Application Tracking
+
 Developers can apply for jobs and track their application status:
 
 - **Apply for Job**: Submit applications to desired job postings.
@@ -155,85 +161,46 @@ const Application = mongoose.model('Application', applicationSchema);
 module.exports = { Application };
 ```
 
----
-
 ### Database Schemas
+
 The MongoDB database is structured to efficiently manage users, jobs, and applications. Key schemas include:
 
 - **User Schema**: Stores user information, including role (developer or recruiter), contact details, and hashed passwords.
 - **Job Schema**: Contains job details such as title, description, requirements, and the recruiter who posted it.
 - **Application Schema**: Tracks applications submitted by developers, linking them to both the job and the applicant, along with the current status.
 
-```javascript
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    minlength: 2,
-    maxlength: 50,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: /^\S+@\S+\.\S+$/,
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6,
-  },
-  role: {
-    type: String,
-    enum: ['developer', 'recruiter'],
-    required: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-// Hash password before saving
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
-});
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = { User };
-```
-
----
-
 ## Frontend
+
 The frontend of SkillStack is designed to provide an intuitive and responsive user experience.
 
 ### User Interface
-The interface includes:
 
-- A streamlined dashboard for developers and recruiters.
-- Intuitive forms for job posting and application submission.
-- Responsive design for seamless use across devices.
+- **Job Listings**: A dynamic job feed tailored to developers' preferences.
+- **Forms and Modals**: User-friendly forms for registration, job creation, and application submission.
+- **Responsiveness**: Optimized for seamless use across devices, ensuring accessibility on mobile, tablet, and desktop.
 
 ### Current Progress
 
-- The user interface layout and components for login, registration, and job browsing have been created.
-- Integration with the backend APIs for authentication is functional.
+- **Authentication**: Login and registration forms integrated with the backend.
+- **Job Browsing**: A functional interface for developers to view available job postings.
+- **Role-based Views**: Separate pages for developers and recruiters, tailored to their respective roles.
 
 ### Future Enhancements
 
-- Implementation of a dashboard for application tracking.
-- Advanced filtering and sorting options for job searches.
-- Interactive charts and insights for recruiters to analyze applications.
+- **Developer Dashboard**: Personalized insights, including saved jobs, application tracking, and tailored job recommendations.
+- **Recruiter Dashboard**: Tools for managing job postings and viewing application trends with analytics.
+- **Advanced Search**: Filters based on skill sets, location, and salary ranges.
+- **Interactive Elements**: Enhanced UI features like drag-and-drop for job management and real-time updates for applications.
+- **Analytics and Visualizations**: Interactive charts and graphs to help recruiters analyze hiring trends and applicant data.
 
----
+## Conclusion
 
-# Conclusion
-SkillStack is a step forward in revolutionizing the job search experience for developers. With a robust backend, a user-focused interface, and future enhancements planned, this platform is set to redefine how developers and companies connect. Join us in building the future of tech recruitment!
+SkillStack is a step forward in revolutionizing the job search experience for developers. By providing a robust backend, an intuitive and user-focused interface, and a roadmap filled with innovative features, this platform aims to redefine how developers and companies connect.
+
+We invite developers and recruiters to join us in shaping the future of tech recruitment. Together, we can build a thriving community of talent and opportunity.
+
+## Repository and Contribution
+
+Feel free to fork the repository, make your changes, and submit a pull request. We welcome contributions of all kinds, whether it's fixing bugs, enhancing features, or improving the documentation.
+
+Happy coding! 🚀
