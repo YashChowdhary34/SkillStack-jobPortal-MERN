@@ -1,6 +1,6 @@
 # SkillStack Job Portal
 
-![Project Banner](#) <!-- Insert your project image here -->
+<!-- Insert your project image here -->
 
 ## Overview
 
@@ -119,7 +119,7 @@ module.exports = router;
 
 ---
 
-# Application Tracking
+### Application Tracking
 Developers can apply for jobs and track their application status:
 
 - **Apply for Job**: Submit applications to desired job postings.
@@ -157,7 +157,7 @@ module.exports = { Application };
 
 ---
 
-# Database Schemas
+### Database Schemas
 The MongoDB database is structured to efficiently manage users, jobs, and applications. Key schemas include:
 
 - **User Schema**: Stores user information, including role (developer or recruiter), contact details, and hashed passwords.
@@ -212,22 +212,22 @@ module.exports = { User };
 
 ---
 
-# Frontend
+## Frontend
 The frontend of SkillStack is designed to provide an intuitive and responsive user experience.
 
-## User Interface
+### User Interface
 The interface includes:
 
 - A streamlined dashboard for developers and recruiters.
 - Intuitive forms for job posting and application submission.
 - Responsive design for seamless use across devices.
 
-## Current Progress
+### Current Progress
 
 - The user interface layout and components for login, registration, and job browsing have been created.
 - Integration with the backend APIs for authentication is functional.
 
-## Future Enhancements
+### Future Enhancements
 
 - Implementation of a dashboard for application tracking.
 - Advanced filtering and sorting options for job searches.
