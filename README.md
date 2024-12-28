@@ -1,4 +1,4 @@
-# SkillStack Job Portal
+# SkillStack - a personalised job portal for developers
 
 <!-- Insert your project image here -->
 
