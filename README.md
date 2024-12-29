@@ -1,6 +1,8 @@
 # SkillStack - A Personalised Job Portal for Developers
 
-<!-- Replace # with the path or URL to your logo -->
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/0bcf9782-3af7-4367-b253-449f50a6ddd9" alt="SkillStack Logo" height="500" width="300">
+</div>
 
 ## Overview
 
